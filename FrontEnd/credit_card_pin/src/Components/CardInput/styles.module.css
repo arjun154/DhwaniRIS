@@ -1,0 +1,25 @@
+.root {
+  margin: 0 auto;
+  width: 600px;
+  text-align: center;
+}
+
+.input {
+  width: 100px;
+  padding: 0.5rem;
+  font-size: 32px;
+  margin: 1rem 0.5rem;
+  text-align: center;
+  text-transform: uppercase;
+  background-color: white;
+  border: 1px solid #999;
+  border-radius: 5px;
+  transition: 200ms;
+}
+
+.input:focus {
+  outline: 0;
+  box-shadow: 0px 0px 2px blue;
+  transform: scale(1.01);
+  transition: 200ms transform;
+}

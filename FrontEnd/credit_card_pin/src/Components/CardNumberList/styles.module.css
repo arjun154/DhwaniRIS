@@ -1,0 +1,27 @@
+.root {
+  width: 300px;
+  margin: auto;
+}
+
+.box {
+  display: flex;
+  margin-top: 10px;
+  width: 300px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.deleteBtn {
+  height: 50px;
+  font-size: large;
+  padding: 10px;
+  color: white;
+  background-color: tomato;
+  border: none;
+  border-radius: 5px;
+}
+
+.text {
+  font-size: x-large;
+  margin-top: 5px;
+}
