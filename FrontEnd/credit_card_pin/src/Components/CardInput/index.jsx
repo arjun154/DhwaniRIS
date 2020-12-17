@@ -62,7 +62,6 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
       items[0].focus();
     } else {
       let i = Math.floor(data.length / 4);
-      console.log(i);
       items[i - 1].focus();
     }
   };

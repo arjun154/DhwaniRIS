@@ -2,7 +2,6 @@ import React from "react";
 import styles from "./styles.module.css";
 
 export default function CardNumberList({ data, onDelete }) {
-  console.log(data);
   return (
     <div className={styles.root}>
       {data.length > 0 &&
