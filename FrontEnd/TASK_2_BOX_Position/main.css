@@ -1,13 +1,27 @@
 .container {
   display: grid;
   grid-template-columns: auto auto;
-  width: 450px;
+  width: 340px;
+  margin: auto;
+  position: relative;
 }
 .box {
-  height: 200px;
-  width: 200px;
+  height: 100px;
+  width: 150px;
   border: solid black 1px;
   margin-top: 5px;
   text-align: center;
-  padding: auto;
+  position: relative;
+  padding-top: 50px;
+  font-size: x-large;
+  font-weight: 500;
+  background: rgb(207, 226, 243);
+  z-index: 1;
+}
+
+.box5 {
+  position: absolute;
+  z-index: 2;
+  top: 25%;
+  left: 25%;
 }
