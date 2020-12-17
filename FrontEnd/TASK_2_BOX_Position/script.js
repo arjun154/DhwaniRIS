@@ -12,10 +12,23 @@ function boxClicked(item) {
       document.getElementById(item.id).style.zIndex = value5 + 1;
     }
   } else {
-    if (value !== "2") {
-      document.getElementById(item.id).style.zIndex = 2;
+    let value1 = Number(
+      window.getComputedStyle(document.getElementById(1)).zIndex
+    );
+    let value2 = Number(
+      window.getComputedStyle(document.getElementById(2)).zIndex
+    );
+    let value3 = Number(
+      window.getComputedStyle(document.getElementById(3)).zIndex
+    );
+    let value4 = Number(
+      window.getComputedStyle(document.getElementById(4)).zIndex
+    );
+    let maxValue = Math.max(value1, value2, value3, value4);
+    if (value > maxValue) {
+      document.getElementById(item.id).style.zIndex = maxValue - 1;
     } else {
-      document.getElementById(item.id).style.zIndex = 0;
+      document.getElementById(item.id).style.zIndex = maxValue + 1;
     }
   }
 }
