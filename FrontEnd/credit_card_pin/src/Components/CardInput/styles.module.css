@@ -1,7 +1,8 @@
 .root {
   margin: 0 auto;
-  width: 600px;
+  width: 700px;
   text-align: center;
+  border-radius: 5px;
 }
 
 .input {
@@ -17,9 +18,19 @@
   transition: 200ms;
 }
 
+.btn {
+  padding: 0.5rem;
+  font-size: 30px;
+  margin: 1rem 0.5rem;
+  background: rgb(189, 211, 108);
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
 .input:focus {
   outline: 0;
-  box-shadow: 0px 0px 2px blue;
+  box-shadow: 0px 0px 2px rgb(38, 0, 255);
   transform: scale(1.01);
   transition: 200ms transform;
 }

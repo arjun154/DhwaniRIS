@@ -21,11 +21,19 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
     }
   };
 
-  // changing focus on pressing backspace button
+  // changing focus on pressing backspace and submit on click enter button
   const handlekeyPress = (e, i) => {
     if (e.keyCode === 8 && !e.target.value && i - 1 >= 0) {
       items[i - 1].focus();
     } else if (e.keyCode === 13 && values[3].length === 4) {
+      let value = values.join("");
+      onSubmit(value);
+    }
+  };
+
+  // handling submit button click
+  const handlesubmit = () => {
+    if (values[3].length === 4) {
       let value = values.join("");
       onSubmit(value);
     }
@@ -78,6 +86,9 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
           ref={(r) => (items[i] = r)}
         />
       ))}
+      <button className={styles.btn} onClick={handlesubmit}>
+        Submit
+      </button>
     </div>
   );
 }
