@@ -2,6 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const dotenv = require("dotenv");
+const childRoutes = require("./routes/ChildRoutes");
+const stateRoutes = require("./routes/StateRoutes");
+const districtRoutes = require("./routes/DistrictRoutes");
+const userRoutes = require("./routes/UserRoutes");
 
 dotenv.config();
 
@@ -20,6 +24,11 @@ mongoose.connect(
 );
 
 app.use(bodyParser.json());
+
+app.use("/api/V1/district", districtRoutes);
+app.use("/api/V1/state", stateRoutes);
+app.use("/api/V1/beneficiary", childRoutes);
+app.use("/api/V1/user", userRoutes);
 
 app.listen(8000, () => {
   console.log("Server is up and runnig!");

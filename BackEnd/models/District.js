@@ -11,7 +11,7 @@ const DistrictSchema = new Schema(
       unique: true,
     },
     state: {
-      type: Schema.Types.ObjectId,
+      type: String,
       required: true,
     },
   },
