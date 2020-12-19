@@ -33,7 +33,6 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
 
   const clearData = () => {
     setValues(new Array(inputBoxes).fill(""));
-    console.log(values, items);
   };
 
   // handling submit button click
