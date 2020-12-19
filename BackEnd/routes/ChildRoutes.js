@@ -4,9 +4,10 @@ const {
   getChildlist,
   addChild,
 } = require("../controllers/ChildController");
+const { authMiddleware } = require("../middleware/authMiddleware");
 
-routes.get("/get-child-profile/:id", getChildById);
-routes.get("/get-child-profile-list", getChildlist);
-routes.post("/child-profile-create", addChild);
+routes.get("/get-child-profile/:id", authMiddleware, getChildById);
+routes.get("/get-child-profile-list", authMiddleware, getChildlist);
+routes.post("/child-profile-create", authMiddleware, addChild);
 
 module.exports = routes;

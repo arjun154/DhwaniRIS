@@ -1,10 +1,13 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-
+const JWT = require("jsonwebtoken");
+const express = require("express");
 const {
   registerValidation,
   loginValidation,
 } = require("../validation/userValidation");
+
+const blackList = [];
 
 const register = async (req, res) => {
   const { error } = registerValidation(req.body);
@@ -33,7 +36,9 @@ const register = async (req, res) => {
 
   try {
     await user.save();
-    res.json({ message: "User Added to the database successfully" });
+    res
+      .status(200)
+      .json({ message: "User Added to the database successfully" });
   } catch (err) {
     res.status(400).send(err);
   }
@@ -55,12 +60,27 @@ const login = async (req, res) => {
     return res.status(400).json({ message: "Invalid password" });
   }
 
+  const accessToken = JWT.sign(
+    { name: req.body.username },
+    process.env.SECRET_KEY,
+    { expiresIn: "1h" }
+  );
+
   res.json({
     message: "user login successful",
+    token: accessToken,
     name: user.name,
     organization: user.organization,
     designation: user.designation,
   });
 };
 
-module.exports = { register, login };
+const logOut = async (req, res) => {
+  console.log(req.session);
+
+  blackList.push(accessToken);
+  // new Promise((resolve, reject) => {
+  //   req.session
+  // })
+};
+module.exports = { register, login, logOut };

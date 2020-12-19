@@ -3,8 +3,9 @@ const {
   getDistrictlist,
   addDistrict,
 } = require("../controllers/DistrictController");
+const { authMiddleware } = require("../middleware/authMiddleware");
 
-routes.get("/get-district", getDistrictlist);
-routes.post("/create-district", addDistrict);
+routes.get("/get-district", authMiddleware, getDistrictlist);
+routes.post("/create-district", authMiddleware, addDistrict);
 
 module.exports = routes;
