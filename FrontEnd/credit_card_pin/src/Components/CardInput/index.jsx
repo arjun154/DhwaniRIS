@@ -25,17 +25,23 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
   const handlekeyPress = (e, i) => {
     if (e.keyCode === 8 && !e.target.value && i - 1 >= 0) {
       items[i - 1].focus();
-    } else if (e.keyCode === 13 && values[3].length === 4) {
+    } else if (e.keyCode === 13 && values[inputBoxes - 1].length === 4) {
       let value = values.join("");
       onSubmit(value);
     }
   };
 
+  const clearData = () => {
+    setValues(new Array(inputBoxes).fill(""));
+    console.log(values, items);
+  };
+
   // handling submit button click
   const handlesubmit = () => {
-    if (values[3].length === 4) {
+    if (values[inputBoxes - 1].length === 4) {
       let value = values.join("");
       onSubmit(value);
+      clearData();
     }
   };
 
@@ -47,30 +53,16 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
       .split("");
 
     // extract data and save into input boxes
-    for (let i = 0; i < data.length; i++) {
-      if (i >= 0 && i <= 3) {
-        values[0] += data[i];
-        if (i === 3) items[0].value = values[0];
+    let len = Math.ceil(data.length / maxCharacter);
+
+    for (let i = 0; i < len; i++) {
+      for (let j = 0; j < maxCharacter; j++) {
+        let val = data[j + i * maxCharacter];
+        if (val) values[i] += val;
       }
-      if (i >= 4 && i <= 7) {
-        values[1] += data[i];
-        if (i === 7) items[1].value = values[1];
+      if (values[i].length === maxCharacter && i < len - 1) {
+        items[i].focus();
       }
-      if (i >= 8 && i <= 11) {
-        values[2] += data[i];
-        if (i === 11) items[2].value = values[2];
-      }
-      if (i >= 12 && i <= 15) {
-        values[3] += data[i];
-        if (i === 15) items[3].value = values[3];
-      }
-    }
-    // set focus to the last filled input box
-    if (data.length <= 4) {
-      items[0].focus();
-    } else {
-      let i = Math.floor(data.length / 4);
-      items[i - 1].focus();
     }
   };
 
@@ -83,6 +75,7 @@ export default function CardInput({ inputBoxes, maxCharacter, onSubmit }) {
           key={i}
           onKeyDown={(e) => handlekeyPress(e, i)}
           onChange={(e) => handleChange(e, i)}
+          value={values[i]}
           ref={(r) => (items[i] = r)}
         />
       ))}
