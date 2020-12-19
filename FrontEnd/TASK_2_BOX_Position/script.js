@@ -1,34 +1,27 @@
+let prevValue;
 function boxClicked(item) {
   // getting the current zIndex of clicked box
   let value = window.getComputedStyle(item).zIndex;
 
+  // if cliked box is not 5 then change the value of the clicked box according to box 5 z-index
   if (item.id !== "5") {
     let value5 = Number(
       window.getComputedStyle(document.getElementById(5)).zIndex
     );
     if (value > value5) {
-      document.getElementById(item.id).style.zIndex = value5 - 1;
+      prevValue = value5 - 1;
+      item.style.zIndex = prevValue;
     } else {
-      document.getElementById(item.id).style.zIndex = value5 + 1;
+      prevValue = value5 + 1;
+      item.style.zIndex = prevValue;
     }
-  } else {
-    let value1 = Number(
-      window.getComputedStyle(document.getElementById(1)).zIndex
-    );
-    let value2 = Number(
-      window.getComputedStyle(document.getElementById(2)).zIndex
-    );
-    let value3 = Number(
-      window.getComputedStyle(document.getElementById(3)).zIndex
-    );
-    let value4 = Number(
-      window.getComputedStyle(document.getElementById(4)).zIndex
-    );
-    let maxValue = Math.max(value1, value2, value3, value4);
-    if (value > maxValue) {
-      document.getElementById(item.id).style.zIndex = maxValue - 1;
+  }
+  // if box 5 is clicked then change the value of box 5 according to last clicked box z-index
+  else {
+    if (value > prevValue) {
+      item.style.zIndex = prevValue - 1;
     } else {
-      document.getElementById(item.id).style.zIndex = maxValue + 1;
+      item.style.zIndex = prevValue + 1;
     }
   }
 }
