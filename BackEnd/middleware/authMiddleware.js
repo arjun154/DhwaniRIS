@@ -1,5 +1,6 @@
 const JWT = require("jsonwebtoken");
 const dotenv = require("dotenv");
+const { blackList } = require("../controllers/UserController");
 
 dotenv.config();
 
@@ -8,6 +9,11 @@ const authMiddleware = async (req, res, next) => {
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
+    return res.sendStatus(403);
+  }
+
+  console.log(blackList);
+  if (blackList.indexOf(token) !== -1) {
     return res.sendStatus(403);
   }
 

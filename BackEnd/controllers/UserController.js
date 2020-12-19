@@ -76,11 +76,10 @@ const login = async (req, res) => {
 };
 
 const logOut = async (req, res) => {
-  console.log(req.session);
-
-  blackList.push(accessToken);
-  // new Promise((resolve, reject) => {
-  //   req.session
-  // })
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+  blackList.push(token);
+  return res.json({ message: "User Logged Out Successfully!" });
 };
-module.exports = { register, login, logOut };
+
+module.exports = { register, login, logOut, blackList };
